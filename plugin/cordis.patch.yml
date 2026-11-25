@@ -1,0 +1,5 @@
+# Visual settings for the DSH compaction backend.
+- insert:
+    - id: compaction-setmodel
+      name: '@hbk/dsh-compaction-setmodel'
+      config: {}

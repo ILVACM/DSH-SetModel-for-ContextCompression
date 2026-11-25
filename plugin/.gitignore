@@ -1,0 +1,7 @@
+node_modules/
+lib/
+
+# Keep the released tarball tracked so a plain clone contains an installable package.
+# Older development artifacts stay ignored.
+hbk-dsh-compaction-setmodel-0.1.0.tgz
+hbk-dsh-compaction-setmodel-0.2.0.tgz

@@ -1,0 +1,12 @@
+# build caches and scratch
+.npm-cache/
+temp/
+
+# plugin build outputs
+plugin/node_modules/
+plugin/lib/
+
+# Keep released tarballs tracked so a plain clone contains installable packages.
+# Old development artifacts remain ignored.
+plugin/hbk-dsh-compaction-setmodel-0.1.0.tgz
+plugin/hbk-dsh-compaction-setmodel-0.2.0.tgz

@@ -1,0 +1,7 @@
+{
+  "meta": {
+    "title": "Compaction model settings",
+    "description": "Sets which model DSH uses to condense conversation history, and tunes the compaction behavior. In the Settings card named Compaction: choose Follow conversation model (default) and DSH picks the route of this session (the model that last answered, then the latest request route, then DSH defaults — not necessarily the model selected in the UI), or Dedicated model with a provider and model entry; adjust retain ratio, auto compaction, compaction and overflow retries, and how many timestamped backups to keep; press Compact context to run one on-demand compaction, the same operation as typing /compact in a conversation, with the real failure cause shown (for example a missing API key). Saving edits only the compaction-basic entry of the web profile cordis.patch.yml and triggers the official DSH hot reload. The card state is a live comparison of the saved values against the running ones — applied, restart required, not confirmed (with the reason), or apply failed — never a stored verdict replayed.",
+    "detail": "docs/DETAIL.md"
+  }
+}
