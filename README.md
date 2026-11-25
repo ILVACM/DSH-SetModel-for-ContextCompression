@@ -56,6 +56,35 @@ https://github.com/ILVACM/DSH-SetModel-for-ContextCompression.git
 
 但有个坑：源码仓库默认不跟踪 `plugin/*.tgz`，也就是说 **直接 clone 仓库通常拿不到安装包**。除非仓库里已经把 tgz 作为发布文件放进去（Release 附件，或维护者手动 `git add -f`），否则这种方式会失败。所以优先用方式一或方式二。
 
+### 用 dsh 命令行安装（不想点界面时）
+
+DSH 自带 `dsh plugin` 命令。它本质是把参数转给 pnpm，并**自动把新插件登记进当前 profile 的 bundle 列表**，不用你手改 `package.json`。
+
+但要注意：**只给仓库地址是不行的**，原因有三个：
+
+1. 插件包在仓库的 `plugin/` 子目录，仓库根目录不是插件包；`dsh plugin add <仓库地址>` 装的是根目录，找不到插件声明。
+2. DSH 从 Git 安装插件会走构建流程，还需要额外放行构建脚本，比较麻烦。
+3. 仓库不提交编译好的 `lib/`，源码里也没有 `prepare` 脚本，从 Git 直接装下来是**没有可运行代码**的。
+
+所以命令行安装同样要用 tgz：
+
+```powershell
+# 先把 tgz 拿到本地：clone 仓库，或从 GitHub Release 下载
+git clone https://github.com/ILVACM/DSH-SetModel-for-ContextCompression.git
+cd DSH-SetModel-for-ContextCompression
+
+# 安装（必须是绝对路径）
+dsh plugin --profile web add "D:\DSH-SetModel-for-ContextCompression\plugin\hbk-dsh-compaction-setmodel-0.2.1.tgz"
+```
+
+装完后 **完全重启 DSH**，让它加载新的插件模块。新设备建议先启动一次 DSH，让 `web` profile 初始化好，再跑命令。
+
+如果提示“已安装”，先移除再装：
+
+```powershell
+dsh plugin --profile web remove @hbk/dsh-compaction-setmodel
+```
+
 ### 装完以后
 
 - 全新安装通常会自动生效；如果设置页没出现卡片，重启一下 DSH 再刷新页面。
